@@ -13,6 +13,14 @@
 	  $partofday = "koolipäev";
   }
 
+  //jälgime semestri kulgu
+  $semesterstart = new DateTime("2020-8-31");
+  $semesterend = new DateTime("2020-12-13");
+  $semesterduration = $semesterstart->diff($semesterend);
+  $today = new DateTime("now");
+  $fromsemesterstart = $semesterstart->diff($today);//aja erinevus objektina, niisama näidata ei saa
+  $fromsemesterstartdays = $fromsemesterstart->format("%r%a");
+   
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +37,9 @@
   <p>See veebileht on loodud õppetöö kaigus ning ei sisalda mingit tõsiseltvõetavat sisu!</p>
   <p>123223################<a	href="https://www.tlu.ee/">#</a>##### </p>
   <p>Kodus muudetud. Success</p>
-  <p>Lehe avamise aeg: <?php echo $fulltimenow; ?>.  <?php echo "Parajasti on " .$partofday ."."; ?> </p>
+  <p>Lehe avamise aeg: <?php echo $fulltimenow .", semestri algusest on möödunud " .$fromsemesterstartdays ." päeva! "; ?>.  
+  <?php echo "Parajasti on " .$partofday ."."; ?> </p>
+
   
   
   
