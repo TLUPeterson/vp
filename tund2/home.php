@@ -12,6 +12,12 @@
   if($hournow >= 8 and $hournow < 18 ) {
 	  $partofday = "koolipäev";
   }
+  if($hournow >= 18 and $hournow < 24 ) {
+	  $partofday = "kodutööd";
+  }
+  if($hournow >= 00 and $hournow < 6 ) {
+	  $partofday = "magamine";
+  }
 
   //jälgime semestri kulgu
   $semesterstart = new DateTime("2020-8-31");
@@ -20,7 +26,8 @@
   $today = new DateTime("now");
   $fromsemesterstart = $semesterstart->diff($today);//aja erinevus objektina, niisama näidata ei saa
   $fromsemesterstartdays = $fromsemesterstart->format("%r%a");
-   
+  $semesterpercent = ($fromsemesterstartdays/$semesterduration)
+  
 ?>
 
 <!DOCTYPE html>
@@ -39,8 +46,26 @@
   <p>Kodus muudetud. Success</p>
   <p>Lehe avamise aeg: <?php echo $fulltimenow .", semestri algusest on möödunud " .$fromsemesterstartdays ." päeva! "; ?>.  
   <?php echo "Parajasti on " .$partofday ."."; ?> </p>
-
   
+  <p> <?php if($fromsemesterstartdays < 0){
+  echo "Semester pole veel alanud";
+  }
+  
+	if ($fromsemesterstartdays > $semesterduration){
+		echo "Semester on lõppenud";
+	}
+	
+	
+	
+	
+	echo $semesterpercent .'% semestrist läbi';
+	  ?> </p>
+  
+  
+  
+  
+  
+
   
   
   
